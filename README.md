@@ -27,3 +27,15 @@ This is a healthcare management API designed to manage patient data, events (app
 ```bash
 git clone https://github.com/your-username/healthcare-api.git
 cd healthcare-api
+
+### install dependencies
+```bash
+npm install
+
+### Set up environment variables
+```bash
+MONGO_URI=your_mongodb_connection_string
+
+###Start the server
+npm start
+
