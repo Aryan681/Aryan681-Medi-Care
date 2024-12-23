@@ -1,29 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const Intervention = require('../models/Intervention');
+const { assignIntervention, updateInterventionStatus,getInterventionsByPatientId } = require('../controllers/interventionController');
 
-// POST /interventions - Assign a new intervention
-router.post('/', async (req, res) => {
-  try {
-    const intervention = new Intervention(req.body);
-    await intervention.save();
-    res.status(201).json(intervention);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
+// POST /interventions - Assign a new intervention 
+router.post('/assign',  assignIntervention);
 
-// GET /interventions/:patientId - Get interventions for a specific patient
-router.get('/:patientId', async (req, res) => {
-  try {
-    const interventions = await Intervention.find({ patientId: req.params.patientId });
-    if (!interventions) {
-      return res.status(404).json({ message: 'No interventions found for this patient' });
-    }
-    res.json(interventions);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// update interventions for a specific patient
+router.put('/update/:interventionId',updateInterventionStatus);
+// retrieve the  interventions for a specific patient
+router.get('/patient/:patientId',  getInterventionsByPatientId);
 
 module.exports = router;
