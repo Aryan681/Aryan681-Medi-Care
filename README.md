@@ -1,4 +1,4 @@
-# Healthcare API Project
+# Medi-Care API Project
 
 This project is a Healthcare API designed for managing patients, interventions, and events in a healthcare system. The system includes user authentication, role-based access control (RBAC), and secure endpoints for managing patient data, medical events, and interventions.
 
@@ -29,7 +29,7 @@ The API follows the **MERN stack** architecture and includes **JWT authenticatio
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/healthcare-api.git
+    git clone https://github.com/Aryan681/Aryan681-Medi-Care.git
     ```
 
 2. Navigate to the project directory:
