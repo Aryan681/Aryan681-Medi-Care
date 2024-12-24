@@ -52,7 +52,7 @@ const getInterventionsByPatientId = async (req, res) => {
     const { patientId } = req.params;
   
     try {
-      const interventions = await Intervention.find({ patientId: new mongoose.Types.ObjectId(patientId) });
+      const interventions = await Intervention.find({ patientId:patientId });
   
       if (!interventions || interventions.length === 0) {
         return res.status(404).json({ message: 'No interventions found for this patient' });

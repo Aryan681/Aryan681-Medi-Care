@@ -2,10 +2,32 @@ const Patient = require('../models/Patient');
 const { emitEventUpdate } = require('../sockets/socketManager');
 
 const addPatient = async (req, res) => {
-    const { name, age, gender, medicalHistory, treatments, address, contact } = req.body;
+    const { name, age, gender, medicalHistory, treatments, address, contact, email } = req.body;
     
     try {
-      const newPatient = new Patient({ name, age, gender, medicalHistory, treatments, address, contact });
+      // Ensure email is provided
+      if (!email) {
+        return res.status(400).json({ message: 'Email is required' });
+      }
+
+      // Check if the email already exists in the system
+      const existingPatient = await Patient.findOne({ email });
+      if (existingPatient) {
+        return res.status(400).json({ message: 'Patient with this email already exists' });
+      }
+
+      // Create new patient with email
+      const newPatient = new Patient({ 
+        name, 
+        age, 
+        gender, 
+        medicalHistory, 
+        treatments, 
+        address, 
+        contact, 
+        email 
+      });
+      
       await newPatient.save();
 
       // Emit real-time update
@@ -41,9 +63,10 @@ const updatePatient = async (req, res) => {
       res.status(500).json({ message: 'Server error', error: err.message });
     }
 };
-  // get  patient details
-  const getPatientDetails = async (req, res) => {
-    const {id } = req.params;
+
+// Get patient details
+const getPatientDetails = async (req, res) => {
+    const { id } = req.params;
     try {
       const patient = await Patient.findById(id);
       if (!patient) return res.status(404).json({ message: 'Patient not found' });
@@ -51,6 +74,6 @@ const updatePatient = async (req, res) => {
     } catch (error) {
       res.status(400).json({ message: 'Error retrieving patient details', error });
     }
-  };
+};
 
-  module.exports = { addPatient,updatePatient,getPatientDetails };
+module.exports = { addPatient, updatePatient, getPatientDetails };

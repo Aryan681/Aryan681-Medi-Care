@@ -11,7 +11,7 @@ const patientRoutes = require('./routes/patientRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const interventionRoutes = require('./routes/interventionRoutes');
 const authRoutes = require('./routes/authRoutes');
-const authMiddleware = require('./middleware/authMiddleware');
+const adminRoutes = require('./routes/adminRoutes');
 
 dotenv.config();
 const app = express();
@@ -27,9 +27,10 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/patients', authMiddleware, patientRoutes);
-app.use('/api/events', authMiddleware, eventRoutes);
-app.use('/api/interventions', authMiddleware, interventionRoutes);
+app.use('/api/patients', patientRoutes);
+app.use('/api/events',  eventRoutes);
+app.use('/api/interventions',  interventionRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Create an HTTP server and integrate WebSocket
 const server = http.createServer(app);

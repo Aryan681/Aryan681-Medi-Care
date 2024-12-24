@@ -1,11 +1,13 @@
+// routes/eventRoutes.js
 const express = require('express');
 const router = express.Router();
 const { logEvent, getEventHistory } = require('../controllers/eventController');
+const  checkRole  = require('../middleware/AuthMiddleware');
 
-// POST /events - Log a new event
-router.post('/', logEvent);
+// POST /events - Log a new event (Doctor, Nurse only)
+router.post('/', checkRole(['Doctor', 'Nurse']), logEvent);
 
-// GET /events/:patientId - Fetch event history for a patient
-router.get('/:id', getEventHistory );
+// GET /events/:id - Fetch event history for a patient (Admin, Doctor, Nurse)
+router.get('/:id', checkRole(['Admin', 'Doctor', 'Nurse']), getEventHistory);
 
 module.exports = router;

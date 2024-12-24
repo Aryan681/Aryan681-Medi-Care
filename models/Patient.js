@@ -42,6 +42,12 @@ const patientSchema = new mongoose.Schema(
     address: {
       type: String,
       required: true
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true, // Ensure email is unique across patients
+      match: [/\S+@\S+\.\S+/, 'Please provide a valid email address']
     }
   },
   { timestamps: true }
