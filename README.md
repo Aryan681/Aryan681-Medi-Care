@@ -28,7 +28,7 @@ The API follows the **MERN stack** architecture and includes **JWT authenticatio
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/healthcare-api.git
+    git clone https://github.com//Aryan681/healthcare-api.git
     ```
 
 2. Navigate to the project directory:
