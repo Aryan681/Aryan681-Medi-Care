@@ -116,9 +116,11 @@ The API follows the **MERN stack** architecture and includes **JWT authenticatio
 #### User Roles
 
 1. **Admin**: Full access to all resources (patients, events, interventions). Admin can assign roles to other users.
-2. **User**: Limited access, typically only allowed to view their own patient records and associated events/interventions.
-
-#### Role Assignment
+2. **Doctor:**: Access to patient data and the ability to assign or update interventions. Can log and view events related to patients under their care.
+3. **Nurse**:  Limited access to patient data and events. Can view patient details and assist with interventions but cannot assign or update them.
+4. **Patient**: Can only view their own patient record and associated events/interventions. No access to other users' data.
+5. **Guest**: View-only access, typically for general public or non-authorized users. Can only see public-facing data like basic patient information or events.
+#### Role Assignment    
 
 - When the first user registers with a specific email (set in `.env` as `INITIAL_ADMIN_EMAIL`), they are automatically assigned the "Admin" role.
 - Admin users can assign roles to other users, which are stored in the database as part of the user record.
