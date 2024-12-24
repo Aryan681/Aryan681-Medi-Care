@@ -62,6 +62,66 @@ The API follows the **MERN stack** architecture and includes **JWT authenticatio
 
     The server will start and listen on `http://localhost:5000` by default.
 
+## API Documentation
+
+### Authentication Routes
+
+#### `POST /auth/register`
+- Register a new user (Admin or User).
+
+#### `POST /auth/login`
+- Login and get a JWT token.
+
+---
+
+### Patient Routes
+
+#### `POST /patients/add`
+- Add a new patient.
+
+#### `GET /patients/:id`
+- Get details of a specific patient.
+
+#### `PUT /patients/update/:id`
+- Update patient details.
+
+---
+
+### Event Routes
+
+#### `POST /events`
+- Log a new event for a patient.
+
+#### `GET /events/:patientId`
+- Fetch event history for a specific patient.
+
+---
+
+### Intervention Routes
+
+#### `POST /interventions/assign`
+- Assign a new intervention to a patient.
+
+#### `PUT /interventions/update/:interventionId`
+- Update the status of an intervention.
+
+#### `GET /interventions/patient/:patientId`
+- Get interventions for a specific patient.
+
+---
+
+### Role-Based Access Control
+
+#### User Roles
+
+1. **Admin**: Full access to all resources (patients, events, interventions). Admin can assign roles to other users.
+2. **User**: Limited access, typically only allowed to view their own patient records and associated events/interventions.
+
+#### Role Assignment
+
+- When the first user registers with a specific email (set in `.env` as `INITIAL_ADMIN_EMAIL`), they are automatically assigned the "Admin" role.
+- Admin users can assign roles to other users, which are stored in the database as part of the user record.
+
 ## Project Structure
 
 ```plaintext
@@ -89,5 +149,3 @@ The API follows the **MERN stack** architecture and includes **JWT authenticatio
 ├── package.json
 ├── server.js
 └── README.md
-
-
