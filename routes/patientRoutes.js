@@ -4,7 +4,7 @@ const router = express.Router();
 const { addPatient, updatePatient, getPatientDetails } = require('../controllers/patientController');
 const  checkRole = require('../middleware/AuthMiddleware');
 
-// POST /patients/add - Add a new patient (Admin only)
+// POST /patients/add - Add a new patient (Admin , doctor only)
 router.post('/add', checkRole(['Admin','Doctor']), addPatient);
 
 // GET /patients/:id - Get patient details (Admin, Doctor, Nurse, Patient)
