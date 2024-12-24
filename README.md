@@ -51,6 +51,7 @@ The API follows the **MERN stack** architecture and includes **JWT authenticatio
     JWT_SECRET=your_jwt_secret
     MONGO_URI=mongodb://localhost:27017/healthcare
     INITIAL_ADMIN_EMAIL=admin@example.com
+    ADMIN_PASSWORD=your_password
     ```
 
 5. Run the application:
@@ -83,5 +84,10 @@ The API follows the **MERN stack** architecture and includes **JWT authenticatio
 │   └── authMiddleware.js
 ├── sockets
 │   └── socketManager.js
+├── testing
+│   └── testSocket.js
+├── package.json
 ├── server.js
 └── README.md
+
+
