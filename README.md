@@ -12,6 +12,7 @@ The API follows the **MERN stack** architecture and includes **JWT authenticatio
 - **Database**: MongoDB (using Mongoose ORM)
 - **Validation**: Joi for input validation (optional)
 - **Environment**: dotenv for managing environment variables
+- **Encryption**: AES-256 encryption using Node.js Crypto module for sensitive patient data
 
 ## Features
 
