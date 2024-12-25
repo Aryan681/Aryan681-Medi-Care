@@ -13,6 +13,8 @@ The API follows the **MERN stack** architecture and includes **JWT authenticatio
 - **Validation**: Joi for input validation (optional)
 - **Environment**: dotenv for managing environment variables
 - **Encryption**: AES-256 encryption using Node.js Crypto module for sensitive patient data
+- **Tailwind CSS**: Styling and responsive designs.
+- **React.js**: Frontend framework for building UI components.
 
 ## Features
 
@@ -62,6 +64,17 @@ The API follows the **MERN stack** architecture and includes **JWT authenticatio
     ```
 
     The server will start and listen on `http://localhost:5000` by default.
+
+# Healthcare UI Installation
+
+1. **Clone the Repository**  
+   ```bash
+   git clone <repository_url>
+   cd healthcare-ui
+   npm install
+   npm start
+
+
 
 ## API Documentation
 
