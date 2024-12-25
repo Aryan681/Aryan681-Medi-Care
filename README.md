@@ -128,6 +128,39 @@ The API follows the **MERN stack** architecture and includes **JWT authenticatio
 ## Project Structure
 
 ```plaintext
+healthcare-ui/
+├── src/
+│   ├── components/         
+│   │   ├── beeds/  
+│   │   │   └── Footer.js         
+│   │   ├── Auth/           
+│   │   │   ├── Login.js
+│   │   │   └── Register.js
+│   │   ├── Patient/        
+│   │   │   └── PatientList.js
+│   │   │   └── PatientManagement.js
+│   │   ├── Event/          
+│   │   │   └── EventLog.js
+│   │   ├── Intervention/  
+│   │   │   └── InterventionForm.js
+│   │   ├── User/  
+│   │   │   └── AllUserList.js
+│   ├──Services/
+│   │   │   └─SocketContext.js 
+│   ├──Context/
+│   │   │   └──api.js 
+│   ├── Dashboard/
+│   │   │   ├── Admin/
+│   │   │   └── AdminDashboard.js 
+│   │   │   ├── patient/
+│   │   │   └── patientDashboard.js    
+│   │   │   ├── Doctor/
+│   │   │   └── DoctorDashboard.js    
+│   │   │   ├── Nurse/
+│   │   │   └── NurseDashboard.js    
+├── package.json
+├── tailwind.config.js
+├── README.md
 ├── controllers
 │   ├── authController.js
 │   ├── patientController.js
@@ -152,3 +185,4 @@ The API follows the **MERN stack** architecture and includes **JWT authenticatio
 ├── package.json
 ├── server.js
 └── README.md
+
