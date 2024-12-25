@@ -15,6 +15,11 @@ const interventionSchema = new mongoose.Schema({
     enum: ['pending', 'completed'], 
     default: 'pending' 
   },
+  name: {
+    type: String,
+    required: true,
+    ref: 'Patient',
+  },
   patientId: {
     type: String, 
     ref: 'Patient',

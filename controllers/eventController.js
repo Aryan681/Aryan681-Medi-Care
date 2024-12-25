@@ -37,15 +37,42 @@ const logEvent = async (req, res) => {
   }
 };
 
+
+
+
 const getEventHistory = async (req, res) => {
   const { patientId } = req.params;
 
+  console.log('Querying events for patientId:', patientId);
+
   try {
-    const events = await Event.find({ patientId });
-    res.status(200).json(events);
+    // Fetch events and populate the patientId field with patient's name
+    const events = await Event.find({ patientId })
+      .populate('patientId', 'name') // Populate only the name field from Patient
+      .exec();
+
+    if (events.length === 0) {
+      return res.status(404).json({ message: 'No events found for this patient.' });
+    }
+
+    // Format the response to include patient name and event details
+    const formattedEvents = events.map((event) => ({
+      patientName: event.patientId.name, // The populated patient name
+      patientId: event.patientId._id, // The patient ID
+      eventType: event.eventType,
+      eventDetails: event.eventDetails,
+      eventDate: event.eventDate,
+    }));
+
+    // Send the formatted events as a response
+    res.status(200).json(formattedEvents);
   } catch (error) {
+    console.error('Error fetching events:', error);
     res.status(400).json({ message: 'Error fetching events', error });
   }
 };
+
+
+
 
 module.exports = { logEvent, getEventHistory };

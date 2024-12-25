@@ -5,7 +5,7 @@ const { addPatient, updatePatient, getPatientDetails } = require('../controllers
 const  checkRole = require('../middleware/AuthMiddleware');
 
 // POST /patients/add - Add a new patient (Admin , doctor only)
-router.post('/add', checkRole(['Admin','Doctor']), addPatient);
+router.post('/add', checkRole(['Admin','Nurse']), addPatient);
 
 // GET /patients/:id - Get patient details (Admin, Doctor, Nurse, Patient)
 router.get('/:id', checkRole(['Admin', 'Doctor', 'Nurse', 'Patient']), getPatientDetails);

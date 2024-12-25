@@ -14,6 +14,10 @@ const eventSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
+  eventDetails: {
+    type: String,
+    required: true
+  },
   patientId: {
     type: String,  
     ref: 'Patient', 

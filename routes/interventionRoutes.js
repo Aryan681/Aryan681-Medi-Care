@@ -5,12 +5,12 @@ const { assignIntervention, updateInterventionStatus, getInterventionsByPatientI
 const  checkRole = require('../middleware/AuthMiddleware');
 
 // POST /interventions/assign - Assign a new intervention (Doctor only)
-router.post('/assign', checkRole(['Doctor']), assignIntervention);
+router.post('/assign', checkRole(['Doctor','Admin']), assignIntervention);
 
 // PUT /interventions/update/:interventionId - Update intervention status (Doctor, Nurse)
-router.put('/update/:interventionId', checkRole(['Doctor', 'Nurse']), updateInterventionStatus);
+router.patch('/update/:interventionId', checkRole(['Doctor', 'Nurse','Admin']), updateInterventionStatus);
 
 // GET /interventions/patient/:patientId - Get interventions for a specific patient (Admin, Doctor, Nurse)
-router.get('/patient/:id', checkRole(['Admin', 'Doctor', 'Nurse']), getInterventionsByPatientId);
+router.get('/patient/:patientId', checkRole(['Admin', 'Doctor', 'Nurse']), getInterventionsByPatientId);
 
 module.exports = router;
