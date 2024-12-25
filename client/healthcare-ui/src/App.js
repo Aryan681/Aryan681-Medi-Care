@@ -12,6 +12,7 @@ import UserList from './components/User/AllUsersList';
 import InterventionForm from './components/Intervention/InterventionForm';
 import { SocketProvider } from '../src/contex/SocketContext';
 import Layout from './contex/NavbarL';
+import About from './components/main/About';
 import LandingPage from './components/main/Home';
 
 // Get user role from localStorage or default to 'guest'
@@ -27,6 +28,7 @@ function App() {
           <Routes>
             {/* Default routes accessible to everyone */}
             <Route path="/" element={<LandingPage />} />
+            <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />} />

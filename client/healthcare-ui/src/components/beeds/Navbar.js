@@ -58,18 +58,8 @@ const Navbar = () => {
             >
               About
             </Link>
-            <Link
-              to="/services"
-              className="text-gray-700 hover:text-blue-600 font-medium transition"
-            >
-              Services
-            </Link>
-            <Link
-              to="/contact"
-              className="text-gray-700 hover:text-blue-600 font-medium transition"
-            >
-              Contact
-            </Link>
+         
+       
           </div>
 
           {/* Right Corner */}
