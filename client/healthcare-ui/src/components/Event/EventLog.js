@@ -43,7 +43,7 @@ const EventLog = () => {
     return () => {
       socket.off('eventLogged');
     };
-  }, [newEvent.patientId]); // Re-fetch when patientId changes
+  }, [newEvent.patientId,socket]); // Re-fetch when patientId changes
 
   // Add a new event
   const handleAddEvent = async (e) => {
