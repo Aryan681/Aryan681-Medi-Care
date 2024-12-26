@@ -8,6 +8,20 @@ const generateToken = (id) => {
     expiresIn: '2h',
   });
 };
+const logoutUser = (req, res) => {
+  try {
+    // Token is already being sent in the Authorization header.
+    const token = req.header('Authorization')?.replace('Bearer ', '');
+
+    if (!token) {
+      return res.status(400).json({ message: 'No token provided' });
+    }
+    // Respond to confirm logout
+    return res.status(200).json({ message: 'Logged out successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error during logout', error });
+  }
+};
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -67,4 +81,4 @@ const signupUser = async (req, res) => {
 };
 
 
-module.exports = { loginUser, signupUser };
+module.exports = { loginUser, signupUser , logoutUser};

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -26,6 +27,33 @@ const Navbar = () => {
     } else {
       navigate('/dashboard'); // Default dashboard
     }
+    console.log(  localStorage.getItem('role'))
+  };
+
+  const logoutUser = async () => {
+    try {
+      // Optional: Call API to invalidate the token
+      await axios.post('http://localhost:5000/api/auth/logout', {}, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`, // Send token to backend
+        },
+      });
+
+      // Clear local storage
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      localStorage.removeItem('email');
+      localStorage.removeItem('userId');
+
+      // Redirect to login page
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout failed', error);
+    }
+  };
+
+  const loginRedirect = () => {
+    navigate('/login');
   };
 
   return (
@@ -39,27 +67,24 @@ const Navbar = () => {
 
           {/* Desktop Links */}
           <div className="hidden md:flex space-x-6">
-          <Link
+            <Link
               to="/"
               className="text-gray-700 hover:text-blue-600 font-medium transition"
             >
               Home
             </Link>
-           <button
+            <button
               onClick={handleDashboardRedirect}
               className="text-gray-700 hover:text-blue-600 font-medium transition"
             >
               Dashboard
             </button>
-           
             <Link
               to="/about"
               className="text-gray-700 hover:text-blue-600 font-medium transition"
             >
               About
             </Link>
-         
-       
           </div>
 
           {/* Right Corner */}
@@ -72,14 +97,21 @@ const Navbar = () => {
                   className="w-8 h-8 rounded-full"
                 />
                 <span className="text-gray-700 font-medium">{userEmail}</span>
+                {/* Logout Button */}
+                <button
+                  onClick={logoutUser}
+                  className="text-gray-700 hover:text-blue-600 font-medium transition"
+                >
+                  Logout
+                </button>
               </div>
             ) : (
-              <Link
-                to="/login"
+              <button
+                onClick={loginRedirect}
                 className="text-gray-700 hover:text-blue-600 font-medium transition"
               >
                 Login
-              </Link>
+              </button>
             )}
           </div>
 

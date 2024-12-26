@@ -25,7 +25,7 @@ const Login = () => {
     if (role === 'Admin') {
       navigate('/dashboard/admin');
     } else {
-      navigate('/dashboard'); // Default route
+      navigate(`/dashboard/${role.toLowerCase()}`); // Default route
     }
     } catch (err) {
       setError('Invalid credentials');
