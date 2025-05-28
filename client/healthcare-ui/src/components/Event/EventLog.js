@@ -3,7 +3,8 @@ import Footer from "../beeds/Footer";
 import { io } from 'socket.io-client';
 const EventLog = () => {
   const [events, setEvents] = useState([]); // Initialize as an empty array
-  const socket = io('http://localhost:5000');
+  const socket = io('https://aryan681-medi-care.onrender.com
+');
   const [newEvent, setNewEvent] = useState({
     patientId: '', // patientId is initially empty and will be filled by the user
     eventType: '',
@@ -20,7 +21,8 @@ const EventLog = () => {
     const fetchEvents = async () => {
       const token = localStorage.getItem('token'); // Retrieve the token from local storage
       try {
-        const response = await fetch(`http://localhost:5000/api/events/${newEvent.patientId}`, {
+        const response = await fetch(`https://aryan681-medi-care.onrender.com
+/api/events/${newEvent.patientId}`, {
           headers: {
             Authorization: `Bearer ${token}`, // Include the token in the Authorization header
           },
@@ -50,7 +52,8 @@ const EventLog = () => {
     e.preventDefault();
     const token = localStorage.getItem('token'); // Retrieve the token from local storage
     try {
-      const response = await fetch('http://localhost:5000/api/events/', {
+      const response = await fetch('https://aryan681-medi-care.onrender.com
+/api/events/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
